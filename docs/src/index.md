@@ -3,12 +3,12 @@ This is the mandatory `index.md` file that is the homepage of the documentation.
 
 Here the documentation string of a function is expanded:
 ```@docs
-dummy_project_function
+param_line
 ```
 
 We can link to any subsection name with [Subsection name](@ref).
 
-We can link to documentation strings with [`dummy_project_function`](@ref).
+We can link to documentation strings with [`param_line`](@ref).
 
 ## Subsection name
 Test.

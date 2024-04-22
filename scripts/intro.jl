@@ -2,7 +2,7 @@ using DrWatson
 @quickactivate "MathStudy"
 
 # Here you may include files from the source directory
-include(srcdir("dummy_src_file.jl"))
+include(srcdir("linear_algebra.jl"))
 
 println(
 """
