@@ -4,7 +4,7 @@ using DrWatson
 using Documenter
 
 # Here you may include files from the source directory
-include(srcdir("LinearAlgebra.jl"))
+include(srcdir("linear_algebra.jl"))
 
 @info "Building Documentation"
 makedocs(;
