@@ -8,7 +8,7 @@ Here the documentation string of a function is expanded:
 
 We can link to any subsection name with [Subsection name](@ref).
 
-We can link to documentation strings with [`plot_param_line`](@ref).
+[//]: # (We can link to documentation strings with [`plot_param_line`](@ref).)
 
 ## Subsection name
 Test.
