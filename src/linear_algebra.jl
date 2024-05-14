@@ -45,3 +45,36 @@ function plot_param_line(p::Point, q::Point, n::Int64)
     display(s)
     Ps
 end
+
+"""
+    vector_angle_cos(p::Point, q::Point) -> cos θ
+Calculate cfosine of angle between 2 vectors using cosines
+"""
+function vector_angle_cos(p::Point, q::Point)
+    s = dot(p,q) / (norm(p) * norm(q))
+end
+
+"""
+    is_orthogonal(p::Point, q::Point) -> bool
+Check if two vectors are is_orthogonal
+"""
+function is_orthogonal(p::Point, q::Point)
+    dot(p,q) == 0
+end
+
+"""
+    function polar_unit(y::Vector) -> Vector{Float64}
+Return unit vector in polar form for vector `y`
+"""
+function polar_unit(y::Vector)
+    [(y[1]/norm(y)),(y[2]/norm(y))]
+end
+
+"""
+    orthproj(v::Vector, w::Vector) -> Vector
+Orthogonol projection of vector `w` onto `v`
+"""
+function orthproj(v::Vector, w::Vector)
+    u = (dot(v, w) / norm(v)^2) * v
+    [round(Int, x) for x in u]
+end
