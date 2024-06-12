@@ -78,3 +78,23 @@ function orthproj(v::Vector, w::Vector)
     u = (dot(v, w) / norm(v)^2) * v
     [round(Int, x) for x in u]
 end
+
+"""
+    point_in_implicit_line(p::Point, q::Point, x::Point) -> Float64   
+The orthogonal vector α is calculated as:
+    v = Vector(q - p)
+    α = [v[2], -v[1]]
+The implicit equation of the line is:
+    α * (x -p) = 0
+    a = α[1]
+    b = α[2]
+    c = -(a * p[1]) - (b * p[2])
+Then calculate the distance of point `x` from the line using the formula:
+    (a * x[1] + b * x[2] + c) / norm([a, b]
+"""
+function point_in_implicit_line(p::Point, q::Point, x::Point)
+    a = q[2] - p[2]
+    b = p[1] - q[1]
+    c = -(a * p[1]) - (b * p[2])
+    (a * x[1] + b * x[2] + c) / norm([a, b])
+end
