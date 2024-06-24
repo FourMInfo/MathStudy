@@ -91,10 +91,39 @@ The implicit equation of the line is:
     c = -(a * p[1]) - (b * p[2])
 Then calculate the distance of point `x` from the line using the formula:
     (a * x[1] + b * x[2] + c) / norm([a, b]
+If 0 the point is in the line!
 """
 function point_in_implicit_line(p::Point, q::Point, x::Point)
     a = q[2] - p[2]
     b = p[1] - q[1]
     c = -(a * p[1]) - (b * p[2])
     (a * x[1] + b * x[2] + c) / norm([a, b])
+end
+
+"""
+    parametric_to_implicit_line(p::Point, v::Vector) -> Tuple{Int64, Int64, Int64}
+The parametric equation is:
+    l : l(t) = p + tv
+Use p and v to calculate:
+    l : ax1 + bx2 + c = 0.
+And return co-efficient as tuple
+"""
+function parametric_to_implicit_line(p::Point, v::Vector)
+    a = -v[2]
+    b = v[1]
+    c = -(a * p[1]) - (b * p[2])
+    (a, b, c)
+end
+
+"""
+   implicit_to_parametric line(a::Int64, b::int64, c::int64) -> Tuple(Vector, Point)
+"""
+function implicit_to_parametric_line(a::Int64, b::Int64, c::Int64)
+    v = [b, -a]
+    if abs(a) > abs(b) then
+        p = Point(-c/a, 0)
+    else
+        p = Point(0, -c/b)    
+    end
+    (v,p)
 end
