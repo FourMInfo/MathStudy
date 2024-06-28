@@ -51,7 +51,7 @@ end
 Calculate cfosine of angle between 2 vectors using cosines
 """
 function vector_angle_cos(p::Point, q::Point)
-    s = dot(p,q) / (norm(p) * norm(q))
+    s = dot(p, q) / (norm(p) * norm(q))
 end
 
 """
@@ -59,7 +59,7 @@ end
 Check if two vectors are is_orthogonal
 """
 function is_orthogonal(p::Point, q::Point)
-    dot(p,q) == 0
+    dot(p, q) == 0
 end
 
 """
@@ -67,7 +67,7 @@ end
 Return unit vector in polar form for vector `y`
 """
 function polar_unit(y::Vector)
-    [(y[1]/norm(y)),(y[2]/norm(y))]
+    [(y[1] / norm(y)), (y[2] / norm(y))]
 end
 
 """
@@ -80,7 +80,7 @@ function orthproj(v::Vector, w::Vector)
 end
 
 """
-    point_in_implicit_line(p::Point, q::Point, x::Point) -> Float64   
+    point_in_implicit_line(p::Point, q::Point, x::Point) -> Float64
 The orthogonal vector α is calculated as:
     v = Vector(q - p)
     α = [v[2], -v[1]]
@@ -120,10 +120,10 @@ end
 """
 function implicit_to_parametric_line(a::Int64, b::Int64, c::Int64)
     v = [b, -a]
-    if abs(a) > abs(b) then
-        p = Point(-c/a, 0)
+    if abs(a) > abs(b)
+        p = Point(-c / a, 0)
     else
-        p = Point(0, -c/b)    
+        p = Point(0, -c / b)
     end
-    (v,p)
+    (v, p)
 end
