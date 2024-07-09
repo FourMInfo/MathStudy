@@ -1,6 +1,6 @@
-using GeometryBasics
-using Plots
-using LinearAlgebra
+import GeometryBasics
+import Plots
+import LinearAlgebra
 
 """
     distance_2_points(p::Point, q::Point) -> Norm(v)
@@ -12,10 +12,10 @@ function distance_2_points(p::Point, q::Point)
 end
 
 """
-    center of gravity(p::Point, q::Point, t::Float64) → r
+    center of gravity(p::Point, q::Point, t) → r
 Creates center of gravity of points `p` and `q`using parametric equation of a line
 """
-function center_of_gravity(p::Point, q::Point, t::Float64)
+function center_of_gravity(p::Point, q::Point, t)
     v = q - p
     r = p + (t * v)
 end
@@ -118,12 +118,12 @@ end
 """
    implicit_to_parametric line(a::Int64, b::int64, c::int64) -> Tuple(Vector, Point)
 """
-function implicit_to_parametric_line(a::Int64, b::Int64, c::Int64)
+function implicit_to_parametric_line(a::Number, b::Number, c::Number)
     v = [b, -a]
     if abs(a) > abs(b)
-        p = Point(-c / a, 0)
+        p = Point(- c / a, 0)
     else
         p = Point(0, -c / b)
     end
     (v, p)
-end
+endi
