@@ -1,6 +1,6 @@
-import GeometryBasics
-import Plots
-import LinearAlgebra
+using GeometryBasics
+using Plots
+using LinearAlgebra
 
 """
     distance_2_points(p::Point, q::Point) -> Norm(v)
@@ -126,4 +126,4 @@ function implicit_to_parametric_line(a::Number, b::Number, c::Number)
         p = Point(0, -c / b)
     end
     (v, p)
-endi
+end
