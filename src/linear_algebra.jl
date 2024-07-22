@@ -121,6 +121,7 @@ end
 function implicit_to_parametric_line(a::Number, b::Number, c::Number)
     v = [b, -a]
     if abs(a) > abs(b)
+        # the linter gives error on this constructor so shut off lint.call setting
         p = Point(- c / a, 0)
     else
         p = Point(0, -c / b)
