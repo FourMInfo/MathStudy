@@ -102,7 +102,7 @@ function point_in_implicit_line(p::Point, q::Point, x::Point)
 end
 
 """
-    parametric_to_implicit_line(p::Point, v::Vector) -> Tuple{Int64, Int64, Int64}
+    parametric_to_implicit_line(p::Point, v::Vector) -> Tuple{Number, Number, Number}
 The parametric equation is:
     l : l(t) = p + tv
 Use p and v to calculate:
@@ -117,7 +117,7 @@ function parametric_to_implicit_line(p::Point, v::Vector)
 end
 
 """
-   implicit_to_parametric line(a::Int64, b::int64, c::int64) -> Tuple(Vector, Point)
+   implicit_to_parametric line(a::Number, b::Number, c::Number) -> Tuple(Vector, Point)
 """
 function implicit_to_parametric_line(a::Number, b::Number, c::Number)
     v = [b, -a]
@@ -152,7 +152,7 @@ function explicit_line(p::Point, q::Point)
 end
 
 """
-   distance_to_implicit_line(a::Int64, b::int64, c::int64, r::Point) -> Float64
+   distance_to_implicit_line(a::Number, b::Number, c::Number, r::Point) -> Float64
 """
 function distance_to_implicit_line(a::Number, b::Number, c::Number, r::Vector)
     v = [a, b]
@@ -160,7 +160,7 @@ function distance_to_implicit_line(a::Number, b::Number, c::Number, r::Vector)
 end
 
 """
-   implicit_line_point_normal_form(a::Int64, b::int64, c::int64) -> Tuple(RationalRoot, RationalRoot, RationalRoot)
+   implicit_line_point_normal_form(a::Number, b::Number, c::Number) -> Tuple(RationalRoot, RationalRoot, RationalRoot)
 """
 function implicit_line_point_normal_form(a::Number, b::Number, c::Number)
     v = [a, b]
