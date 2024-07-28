@@ -2,7 +2,7 @@
 
 julia_version = "1.10.4"
 manifest_format = "2.0"
-project_hash = "d6a40127991f7beebd7a79fa7e9812929820770a"
+project_hash = "4e76f889ff6c7ef6d7ac55f483cfd1c48b443860"
 
 [[deps.ANSIColoredPrinters]]
 git-tree-sha1 = "574baf8110975760d391c710b6341da1afa48d8c"
@@ -883,6 +883,11 @@ uuid = "3fa0cd96-eef1-5676-8a61-b3b8758bbffb"
 [[deps.Random]]
 deps = ["SHA"]
 uuid = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
+
+[[deps.RationalRoots]]
+git-tree-sha1 = "e5f5db699187a4810fda9181b34250deeedafd81"
+uuid = "308eb6b3-cc68-5ff3-9e97-c3c4da4fa681"
+version = "0.2.1"
 
 [[deps.RecipesBase]]
 deps = ["PrecompileTools"]

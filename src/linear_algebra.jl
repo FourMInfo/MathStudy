@@ -1,6 +1,7 @@
 using GeometryBasics
 using Plots
 using LinearAlgebra
+using RationalRoots
 
 """
     distance_2_points(p::Point, q::Point) -> Norm(v)
@@ -127,4 +128,51 @@ function implicit_to_parametric_line(a::Number, b::Number, c::Number)
         p = Point(0, -c / b)
     end
     (v, p)
+end
+
+"""
+    explicit_line(p::Point, q::Point) -> Tuple(Float64, Float64)
+The orthogonal vector α is calculated as:
+    v = Vector(q - p)
+    α = [v[2], -v[1]]
+The explicit equation of the line requires slope & intercept:
+    a = -v[2]
+    b = v[1]
+    slope = -a / b
+    c = -(a * p[1]) - (b * p[2])
+    intercept = -c / b
+"""
+function explicit_line(p::Point, q::Point)
+    a = q[2] - p[2]
+    b = p[1] - q[1]
+    c = -(a * p[1]) - (b * p[2])
+    slope = -a / b
+    intercept = -c / b
+    (slope, intercept)
+end
+
+"""
+   distance_to_implicit_line(a::Int64, b::int64, c::int64, r::Point) -> Float64
+"""
+function distance_to_implicit_line(a::Number, b::Number, c::Number, r::Vector)
+    v = [a, b]
+    d = ((a * r[1]) + (b * r[2]) + c) / norm(v)
+end
+
+"""
+   implicit_line_point_normal_form(a::Int64, b::int64, c::int64) -> Tuple(RationalRoot, RationalRoot, RationalRoot)
+"""
+function implicit_line_point_normal_form(a::Number, b::Number, c::Number)
+    v = [a, b]
+    â = a/RationalRoot(norm(v))
+    b̂ = b/RationalRoot(norm(v))
+    ĉ = c/RationalRoot(norm(v))
+    (â, b̂, ĉ)
+end
+
+"""
+   distance_to_pnf_implicit_line(â::RationalRoot, b̂::RationalRoot, ĉ::RationalRoot, r::Point) -> Float64
+"""
+function distance_to_pnf_implicit_line(â::RationalRoot, b̂::RationalRoot, ĉ::RationalRoot, r::Vector)
+    d = ((â * r[1]) + (b̂ * r[2]) + ĉ)
 end
