@@ -76,8 +76,7 @@ end
 Orthogonol projection of vector `w` onto `v`
 """
 function orthproj(v::Vector, w::Vector)
-    u = (dot(v, w) / norm(v)^2) * v
-    [round(Int, x) for x in u]
+    u = (dot(v, w) / dot(v, v)) * v
 end
 
 """
@@ -133,11 +132,9 @@ end
 """
     explicit_line(p::Point, q::Point) -> Tuple(Float64, Float64)
 The orthogonal vector α is calculated as:
-    v = Vector(q - p)
+    v = Vector(q -p)
     α = [v[2], -v[1]]
-The explicit equation of the line requires slope & intercept:
-    a = -v[2]
-    b = v[1]
+The explicit equation of the line requires slope & intercept
 """
 function explicit_line(p::Point, q::Point)
     a = q[2] - p[2]
