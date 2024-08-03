@@ -151,7 +151,7 @@ end
 """
    distance_to_implicit_line(a::Number, b::Number, c::Number, r::Point) -> Float64
 """
-function distance_to_implicit_line(a::Number, b::Number, c::Number, r::Vector)
+function distance_to_implicit_line(a::Number, b::Number, c::Number, r::Point)
     v = [a, b]
     d = ((a * r[1]) + (b * r[2]) + c) / norm(v)
 end
@@ -176,7 +176,7 @@ end
 
 """
    distance_to_parametric_line(p::Point, v::Vector, r::Point) -> Float64
-Defintion of the line:
+Definition of the line:
    l = p + tv
 """
 function distance_to_parametric_line(p::Point, v::Vector, r::Point)
@@ -187,4 +187,21 @@ function distance_to_parametric_line(p::Point, v::Vector, r::Point)
     cosα = vector_angle_cos(v,w)
     # distance = length of w * sin(α) which is sqrt of 1 - cos(α) squared
     d = norm(w) * sqrt(1 - (cosα ^ 2))
+end
+
+"""
+    function foot_of_line(p::Point, v::Vector,r::Point) -> Tuple(Point, Float64)
+Definition of the line:
+   l = p + tv
+Find q on l closest to r
+"""
+function foot_of_line(p::Point, v::Vector, r::Point)
+    # calculate the vector from p to r
+    w = Vector(r - p)
+    t = dot(v, w) / norm(v)^2
+    # calculate foot
+    q = Point(p + t*v)
+    # calculate distance
+    d = dot(v, w) / norm(v)
+    (q, d)
 end
