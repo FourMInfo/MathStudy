@@ -185,6 +185,6 @@ function distance_to_parametric_line(p::Point, v::Vector, r::Point)
     # calculate cos(α)
     #cosα = dot(v,w) / (norm(v) * norm(w)) previously defined as function
     cosα = vector_angle_cos(v,w)
-    # distance = length of w * sin(α) which is sqrt of 1 - sin(α) squared
+    # distance = length of w * sin(α) which is sqrt of 1 - cos(α) squared
     d = norm(w) * sqrt(1 - (cosα ^ 2))
 end
