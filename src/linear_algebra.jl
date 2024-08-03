@@ -48,10 +48,10 @@ function plot_param_line(p::Point, q::Point, n::Int64)
 end
 
 """
-    vector_angle_cos(p::Point, q::Point) -> cos θ
-Calculate cfosine of angle between 2 vectors using cosines
+    vector_angle_cos(p::Vector, q::Vector) -> cos θ
+Calculate cosine of angle between 2 points
 """
-function vector_angle_cos(p::Point, q::Point)
+function vector_angle_cos(p::Vector, q::Vector)
     s = dot(p, q) / (norm(p) * norm(q))
 end
 
@@ -138,9 +138,6 @@ The orthogonal vector α is calculated as:
 The explicit equation of the line requires slope & intercept:
     a = -v[2]
     b = v[1]
-    slope = -a / b
-    c = -(a * p[1]) - (b * p[2])
-    intercept = -c / b
 """
 function explicit_line(p::Point, q::Point)
     a = q[2] - p[2]
@@ -175,4 +172,19 @@ end
 """
 function distance_to_pnf_implicit_line(â::RationalRoot, b̂::RationalRoot, ĉ::RationalRoot, r::Vector)
     d = ((â * r[1]) + (b̂ * r[2]) + ĉ)
+end
+
+"""
+   distance_to_parametric_line(p::Point, v::Vector, r::Point) -> Float64
+Defintion of the line:
+   l = p + tv
+"""
+function distance_to_parametric_line(p::Point, v::Vector, r::Point)
+    # calculate the vector from p to r
+    w = Vector(r - p)
+    # calculate cos(α)
+    #cosα = dot(v,w) / (norm(v) * norm(w)) previously defined as function
+    cosα = vector_angle_cos(v,w)
+    # distance = length of w * sin(α) which is sqrt of 1 - sin(α) squared
+    d = norm(w) * sqrt(1 - (cosα ^ 2))
 end
