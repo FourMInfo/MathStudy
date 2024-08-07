@@ -187,10 +187,11 @@ function distance_to_parametric_line(p::Point, v::Vector, r::Point)
 end
 
 """
-    function foot_of_line(p::Point, v::Vector,r::Point) -> Tuple(Point, Float64)
+function foot_of_line(p::Point, v::Vector, r::Point) -> Tuple(Point, Float64)
 Definition of the line:
    l = p + tv
-Find q on l closest to r
+Find point q on l closest to r
+Calculate distance from q to A (foot of the line)
 """
 function foot_of_line(p::Point, v::Vector, r::Point)
     # calculate the vector from p to r
@@ -201,4 +202,29 @@ function foot_of_line(p::Point, v::Vector, r::Point)
     # calculate distance
     d = dot(v, w) / norm(v)
     (q, d)
+end
+
+"""
+    function foot_of_line_parallelogram(P::Point, A::Point, B::Point) -> Tuple(Point, Float64, Float64)
+Definition of the line:
+   l = p + tv
+where v is the vector from P to B
+w is the vector from P to A
+Find point q on l closest to A
+Calculate distance from q to A (foot of the line)
+Calculate area of parallelogram defined by A and B
+"""
+function foot_of_line_parallelogram(P::Point, A::Point, B::Point)
+    # calculate the vector from p to B
+    v = Vector(B - p)
+    # calculate the vector from p to A
+    w = Vector(A - p)
+    t = dot(v, w) / norm(v)^2
+    # calculate foot
+    q = Point(p + t*v)
+    # calculate distance
+    d = dot(v, w) / norm(v)
+    # calculate area of parallelogram - distance * base
+    a = d * norm(v)
+    (q, d, a)
 end
