@@ -228,3 +228,35 @@ function foot_of_line_parallelogram(P::Point, A::Point, B::Point)
     a = d * norm(v)
     (q, d, a)
 end
+
+"""
+    function intersection_2_parametric_lines(v::Vector, w::Vector, p::Point, q::Point) -> Vector
+l₁ = p + tv
+l₂ = q + sw
+intersection: p + t̂v = q + ŝw
+The solution is a system of 2 equations in two unknowns expressed in equation:
+    t̂*v - ŝ*w  = q - p
+"""
+function intersection_2_parametric_lines(v::Vector, w::Vector, p::Point, q::Point)
+    # calculate the vector of RHS of the solution equation
+    b = Vector(q - p)
+    # build the matrix of the LHS of the solution equation
+    A = [v[1] -w[1]; v[2] -w[2]]
+    # solve the system using left division of the matrix by the vector
+    A\b
+end
+
+"""
+    function intersection_2_implicit_lines(a₁::Number, b₁::Number, c₁::Number, a₂::Number, b₂::Number, c₂::Number) -> Vector
+l₁: a₁x̂₁ + b₁x̂₂ + c₁ = 0
+l₂: a₂x̂₁ + b₂x̂₂ + c₂ = 0
+Solve for x̂₁ and x̂₂ which is the intersection point
+"""
+function intersection_2_implicit_lines(a₁::Number, b₁::Number, c₁::Number, a₂::Number, b₂::Number, c₂::Number)
+    # calculate the c vector
+    b = [-c₁, -c₂]
+    # build the A matrix from a's and b's
+    A = [a₁ b₁; a₂ b₂]
+    # solve the system using left division of the matrix by the vector
+    A\b
+end
