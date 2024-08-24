@@ -80,6 +80,15 @@ function orthproj(v::Vector, w::Vector)
 end
 
 """
+    function reflection(v::Vector, w::Vector)
+The projection P from 'w' onto 'v' is the midpoint of the reflection of w around v
+"""
+function reflection(v::Vector, w::Vector)
+    P = orthproj(v,w)
+    (2 * P ) - X
+end
+
+"""
     point_in_implicit_line(p::Point, q::Point, x::Point) -> Float64
 The orthogonal vector α is calculated as:
     v = Vector(q - p)
