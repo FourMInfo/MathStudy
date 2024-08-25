@@ -80,12 +80,22 @@ function orthproj(v::Vector, w::Vector)
 end
 
 """
-    function reflection(v::Vector, w::Vector)
+    function reflection(v::Vector, w::Vector) -> Vector
 The projection P from 'w' onto 'v' is the midpoint of the reflection of w around v
 """
 function reflection(v::Vector, w::Vector)
     P = orthproj(v,w)
     (2 * P ) - X
+end
+
+"""
+function rotation(θ::Number, v::Vector) -> Vector
+    θ : degrees to rotate v
+"""
+function rotation(θ::Number, v::Vector)
+    x′ = (cos(deg2rad(θ)) * v[1]) - (sin(deg2rad(θ)) * v[2])
+    y′ = (sin(deg2rad(θ)) * v[1]) + (cos(deg2rad(θ)) * v[2])
+    [round(x′), round(y′)]
 end
 
 """
